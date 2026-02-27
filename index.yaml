@@ -1,0 +1,72 @@
+apiVersion: v1
+entries:
+  mariadb-enterprise-operator:
+  - apiVersion: v2
+    appVersion: 25.10.3
+    created: "2026-02-27T10:56:44.250183748Z"
+    dependencies:
+    - condition: crds.enabled
+      name: mariadb-enterprise-operator-crds
+      repository: file://../mariadb-enterprise-operator-crds
+      version: 25.10.3
+    description: Run and operate MariaDB Enterprise in Kubernetes
+    digest: 6bbc172669b59dd4136b425ed3fa38b1cfa258f71c40c704bcf35e50c022ac62
+    home: https://github.com/mariadb-corporation/mariadb-enterprise-operator-helm
+    icon: https://operator.mariadb.com/assets/mariadb_profile.svg
+    keywords:
+    - mariadb
+    - mysql
+    - operator
+    - mariadb-enterprise-operator
+    - database
+    - maxscale
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - email: operator@mariadb.com
+      name: MariaDB Corporation
+    - email: support@mariadb.com
+      name: Support
+    - email: sales-EMEA@mariadb.com
+      name: Sales EMEA
+    - email: sales-APAC@mariadb.com
+      name: Sales APAC
+    - email: sales-nam@mariadb.com
+      name: Sales Americas
+    name: mariadb-enterprise-operator
+    type: application
+    urls:
+    - mariadb-enterprise-operator-25.10.3.tgz
+    version: 25.10.3
+  mariadb-enterprise-operator-crds:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2026-02-27T10:56:44.475694121Z"
+    description: MariaDB Enterprise Operator CRDs
+    digest: be119e9bda4024ce75ba976046732763190aa4c3f3cb6d8764f830e17b3bd417
+    home: https://github.com/mariadb-corporation/mariadb-enterprise-operator-helm
+    icon: https://operator.mariadb.com/assets/mariadb_profile.svg
+    keywords:
+    - mariadb
+    - mysql
+    - operator
+    - mariadb-enterprise-operator
+    - database
+    - maxscale
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - email: operator@mariadb.com
+      name: MariaDB Corporation
+    - email: support@mariadb.com
+      name: Support
+    - email: sales-EMEA@mariadb.com
+      name: Sales EMEA
+    - email: sales-APAC@mariadb.com
+      name: Sales APAC
+    - email: sales-nam@mariadb.com
+      name: Sales Americas
+    name: mariadb-enterprise-operator-crds
+    type: application
+    urls:
+    - mariadb-enterprise-operator-crds-25.10.3.tgz
+    version: 25.10.3
+generated: "2026-02-27T10:56:44.475701822Z"
