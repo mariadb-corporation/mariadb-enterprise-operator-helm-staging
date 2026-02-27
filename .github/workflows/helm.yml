@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - "deploy/charts/**"
+  workflow_dispatch:
 
 env:
   HELM_VERSION: "v3.10.2"
