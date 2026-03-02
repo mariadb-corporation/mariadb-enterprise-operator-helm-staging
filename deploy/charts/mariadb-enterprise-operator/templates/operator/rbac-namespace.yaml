@@ -201,6 +201,12 @@ rules:
   - patch
   - watch
 - apiGroups:
+  - enterprise.mariadb.com
+  resources:
+  - pointintimerecoveries
+  verbs:
+  - get
+- apiGroups:
   - monitoring.coreos.com
   resources:
   - servicemonitors
