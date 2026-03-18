@@ -55,14 +55,18 @@ done
 echo "[3/5] Extracting Kubernetes events sorted by creation timestamp..."
 kubectl get events --sort-by='.metadata.creationTimestamp' -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_events.log"
 
-echo "[4/5] Extracting Custom Resources (MariaDB and MaxScale)..."
-kubectl get mdb -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_mariadbs.yaml" 2>/dev/null || echo "  -> No MariaDB custom resources found."
+echo "[4/5] Extracting Custom Resources..."
+kubectl get mariadb -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_mariadbs.yaml" 2>/dev/null || echo "  -> No MariaDB custom resources found."
 kubectl get maxscale -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_maxscales.yaml" 2>/dev/null || echo "  -> No MaxScale custom resources found."
+kubectl get backup -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_backups.yaml" 2>/dev/null || echo "  -> No Backup custom resources found."
+kubectl get physicalbackup -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_physicalbackups.yaml" 2>/dev/null || echo "  -> No PhysicalBackup custom resources found."
+kubectl get pitr -o yaml -n "$MARIADB_NAMESPACE" > "${SUPPORT_DIR}/${MARIADB_NAMESPACE}_pitrs.yaml" 2>/dev/null || echo "  -> No PointInTimeRecovery custom resources found."
 
 echo "[5/5] Extracting Operator logs from '$OPERATOR_NAMESPACE'..."
-read -p "Please enter the Helm release name for the MariaDB Operator [mariadb-enterprise-operator]: " OPERATOR_RELEASE_NAME
-OPERATOR_RELEASE_NAME=${OPERATOR_RELEASE_NAME:-mariadb-enterprise-operator}
-kubectl logs -l app.kubernetes.io/name=${OPERATOR_RELEASE_NAME} -n "$OPERATOR_NAMESPACE" > "${SUPPORT_DIR}/${OPERATOR_NAMESPACE}_operator.log" 2>/dev/null || echo "  -> Operator logs not found in $OPERATOR_NAMESPACE."
+kubectl get deployments -n "$OPERATOR_NAMESPACE" 
+read -p "Please enter the Deployment name for the MariaDB Enterprise Operator from the list above [mariadb-enterprise-operator]: " OPERATOR_DEPLOY_NAME
+OPERATOR_DEPLOY_NAME=${OPERATOR_DEPLOY_NAME:-mariadb-enterprise-operator}
+kubectl logs deployment/${OPERATOR_DEPLOY_NAME} -n "$OPERATOR_NAMESPACE" > "${SUPPORT_DIR}/${OPERATOR_NAMESPACE}_operator.log" 2>/dev/null || echo "  -> Operator deployment logs not found in $OPERATOR_NAMESPACE."
 
 echo "----------------------------------------------------------------------"
 echo "📋 Please provide the following environment details:"
